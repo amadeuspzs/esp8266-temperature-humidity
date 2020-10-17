@@ -26,7 +26,7 @@ Tested with:
 Tested with:
 
 1. 2xAA batteries _fine but unsustainable_
-2. Nokia BL-5C LiIon battery **current preferred battery**
+2. Nokia BL-5C Li-Ion battery **current preferred battery**
 
 Tested with:
 
