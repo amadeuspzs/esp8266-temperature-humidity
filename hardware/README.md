@@ -20,7 +20,7 @@ Two options:
 ### Regulator
 
 Regulator|Type|Quiescent Current (uA)|V<sub>in</sub> (V)|Max current (mA)
----|---|---
+---|---|---|---|---
 [MCP1700](https://www.microchip.com/wwwproducts/en/MCP1700)|LDO|1.6|2.3-6|250
 [TPS62203](https://www.ti.com/lit/ds/symlink/tps61322.pdf?ts=1602954670088)|Buck|6.5|0.9-5.5|1800
 
