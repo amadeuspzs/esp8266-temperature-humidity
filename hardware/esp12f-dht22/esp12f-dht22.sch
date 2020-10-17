@@ -1,0 +1,356 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "ESP-12F DHT22 Li-Ion Powered"
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Regulator_Linear:MCP1700-3302E_SOT23 U1
+U 1 1 5EB83982
+P 4400 2500
+F 0 "U1" H 4400 2742 50  0000 C CNN
+F 1 "MCP1700-3302E_SOT23" H 4400 2651 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 4400 2725 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001826D.pdf" H 4400 2500 50  0001 C CNN
+	1    4400 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5EB85D79
+P 4700 2750
+F 0 "C2" H 4815 2796 50  0000 L CNN
+F 1 "1uF" H 4815 2705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 4738 2600 50  0001 C CNN
+F 3 "~" H 4700 2750 50  0001 C CNN
+	1    4700 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5EB86425
+P 4100 2750
+F 0 "C1" H 3985 2704 50  0000 R CNN
+F 1 "1uF" H 3985 2795 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 4138 2600 50  0001 C CNN
+F 3 "~" H 4100 2750 50  0001 C CNN
+	1    4100 2750
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4100 2600 4100 2500
+Wire Wire Line
+	4100 2900 4400 2900
+Connection ~ 4400 2900
+Wire Wire Line
+	4400 2900 4400 4100
+Wire Wire Line
+	4700 2900 4400 2900
+Connection ~ 4400 4100
+$Comp
+L RF_Module:ESP-12F U2
+U 1 1 5EB8220B
+P 6100 3300
+F 0 "U2" H 6100 4281 50  0000 C CNN
+F 1 "ESP-12F" H 6100 4190 50  0000 C CNN
+F 2 "RF_Module:ESP-12E" H 6100 3300 50  0001 C CNN
+F 3 "http://wiki.ai-thinker.com/_media/esp8266/esp8266_series_modules_user_manual_v1.1.pdf" H 5750 3400 50  0001 C CNN
+	1    6100 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 4100 6100 4000
+$Comp
+L power:GND #PWR03
+U 1 1 5EB94C73
+P 6100 4250
+F 0 "#PWR03" H 6100 4000 50  0001 C CNN
+F 1 "GND" H 6105 4077 50  0000 C CNN
+F 2 "" H 6100 4250 50  0001 C CNN
+F 3 "" H 6100 4250 50  0001 C CNN
+	1    6100 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 4250 6100 4100
+Connection ~ 6100 4100
+$Comp
+L Device:R R2
+U 1 1 5EB994A9
+P 6850 2550
+F 0 "R2" H 6920 2596 50  0000 L CNN
+F 1 "10K" H 6920 2505 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 6780 2550 50  0001 C CNN
+F 3 "~" H 6850 2550 50  0001 C CNN
+	1    6850 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5EB998F1
+P 7000 2750
+F 0 "R3" H 7070 2796 50  0000 L CNN
+F 1 "10K" H 7070 2705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 6930 2750 50  0001 C CNN
+F 3 "~" H 7000 2750 50  0001 C CNN
+	1    7000 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5EB9A33E
+P 7100 3750
+F 0 "R4" H 7170 3796 50  0000 L CNN
+F 1 "10K" H 7170 3705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7030 3750 50  0001 C CNN
+F 3 "~" H 7100 3750 50  0001 C CNN
+	1    7100 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 3600 7100 3600
+Wire Wire Line
+	7100 3900 7100 4100
+Wire Wire Line
+	7100 4100 6850 4100
+Wire Wire Line
+	7000 2800 7000 2900
+Wire Wire Line
+	6700 2900 7000 2900
+Connection ~ 7000 2900
+Wire Wire Line
+	6700 2700 6850 2700
+Wire Wire Line
+	6850 2400 6450 2400
+Wire Wire Line
+	6450 2400 6450 2500
+Wire Wire Line
+	6450 2500 6100 2500
+Wire Wire Line
+	7000 2600 7000 2400
+Wire Wire Line
+	7000 2400 6850 2400
+Connection ~ 6850 2400
+Wire Wire Line
+	6700 3700 6100 3700
+Wire Wire Line
+	6100 3700 6100 2700
+Wire Wire Line
+	6100 2700 5500 2700
+Connection ~ 6100 2500
+Wire Wire Line
+	5350 2900 5500 2900
+$Comp
+L Device:R R1
+U 1 1 5EB97EBD
+P 5350 2750
+F 0 "R1" H 5420 2796 50  0000 L CNN
+F 1 "10K" H 5420 2705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 5280 2750 50  0001 C CNN
+F 3 "~" H 5350 2750 50  0001 C CNN
+	1    5350 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 2600 5350 2500
+Connection ~ 5350 2500
+Wire Wire Line
+	5350 2500 6100 2500
+$Comp
+L Device:Jumper_NO_Small JP1
+U 1 1 5EBAFBE3
+P 6850 3150
+F 0 "JP1" V 6804 3198 50  0000 L CNN
+F 1 "Download" V 6895 3198 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 6850 3150 50  0001 C CNN
+F 3 "~" H 6850 3150 50  0001 C CNN
+	1    6850 3150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6850 3050 6850 2700
+Connection ~ 6850 2700
+Wire Wire Line
+	6850 3250 6850 4100
+Connection ~ 6850 4100
+Wire Wire Line
+	6850 4100 6100 4100
+$Comp
+L Device:CP C4
+U 1 1 5EBB3F90
+P 5200 3350
+F 0 "C4" H 5318 3396 50  0000 L CNN
+F 1 "10uF" H 5318 3305 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D4.0mm_P1.50mm" H 5238 3200 50  0001 C CNN
+F 3 "~" H 5200 3350 50  0001 C CNN
+	1    5200 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5200 3200 5200 2500
+Connection ~ 5200 2500
+Wire Wire Line
+	5200 2500 5350 2500
+Wire Wire Line
+	5200 3500 5200 4100
+Connection ~ 5200 4100
+Wire Wire Line
+	5200 4100 5750 4100
+$Comp
+L Device:C C3
+U 1 1 5EBB58F3
+P 4900 3350
+F 0 "C3" H 5015 3396 50  0000 L CNN
+F 1 "0.1uF" H 5015 3305 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 4938 3200 50  0001 C CNN
+F 3 "~" H 4900 3350 50  0001 C CNN
+	1    4900 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4900 3500 4900 4100
+Wire Wire Line
+	4900 4100 5200 4100
+Wire Wire Line
+	4700 2500 4700 2600
+Connection ~ 4700 2500
+Wire Wire Line
+	4400 4100 4900 4100
+Connection ~ 4900 4100
+Wire Wire Line
+	4700 2500 4900 2500
+Wire Wire Line
+	4900 3200 4900 2500
+Connection ~ 4900 2500
+Wire Wire Line
+	4900 2500 5200 2500
+$Comp
+L Connector:Conn_01x03_Male J3
+U 1 1 5EBC111A
+P 7500 3450
+F 0 "J3" H 7472 3474 50  0000 R CNN
+F 1 "DHT22" H 7472 3383 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7500 3450 50  0001 C CNN
+F 3 "~" H 7500 3450 50  0001 C CNN
+	1    7500 3450
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 3300 7150 3300
+Wire Wire Line
+	7150 3300 7150 3350
+Wire Wire Line
+	7150 3350 7300 3350
+Wire Wire Line
+	6700 3500 7200 3500
+Wire Wire Line
+	7200 3500 7200 3450
+Wire Wire Line
+	7200 3450 7300 3450
+Wire Wire Line
+	7100 4100 7300 4100
+Wire Wire Line
+	7300 4100 7300 3550
+Connection ~ 7100 4100
+NoConn ~ 6700 3400
+NoConn ~ 6700 3200
+NoConn ~ 6700 3100
+NoConn ~ 5500 3100
+NoConn ~ 5500 3300
+NoConn ~ 5500 3400
+NoConn ~ 5500 3500
+NoConn ~ 5500 3600
+NoConn ~ 5500 3700
+NoConn ~ 5500 3800
+$Comp
+L Connector:Conn_01x02_Male J2
+U 1 1 5EBCC504
+P 7500 3000
+F 0 "J2" H 7472 2974 50  0000 R CNN
+F 1 "UART" H 7472 2883 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7500 3000 50  0001 C CNN
+F 3 "~" H 7500 3000 50  0001 C CNN
+	1    7500 3000
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	7300 3000 6800 3000
+Wire Wire Line
+	6800 3000 6800 2800
+Wire Wire Line
+	6800 2800 6700 2800
+Wire Wire Line
+	7300 3100 7150 3100
+Wire Wire Line
+	7150 3100 7150 2950
+Wire Wire Line
+	7150 2950 6750 2950
+Wire Wire Line
+	6750 2950 6750 3000
+Wire Wire Line
+	6750 3000 6700 3000
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5EBD21BA
+P 3900 2300
+F 0 "#FLG01" H 3900 2375 50  0001 C CNN
+F 1 "PWR_FLAG" H 3900 2473 50  0000 C CNN
+F 2 "" H 3900 2300 50  0001 C CNN
+F 3 "~" H 3900 2300 50  0001 C CNN
+	1    3900 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 2500 3850 2500
+Wire Wire Line
+	4400 2900 4400 2800
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 5EBDAEE6
+P 5750 4250
+F 0 "#FLG02" H 5750 4325 50  0001 C CNN
+F 1 "PWR_FLAG" H 5750 4423 50  0000 C CNN
+F 2 "" H 5750 4250 50  0001 C CNN
+F 3 "~" H 5750 4250 50  0001 C CNN
+	1    5750 4250
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5750 4250 5750 4100
+Connection ~ 5750 4100
+Wire Wire Line
+	5750 4100 6100 4100
+$Comp
+L Connector:Conn_01x02_Male J1
+U 1 1 5EB963B1
+P 3650 2500
+F 0 "J1" H 3758 2681 50  0000 C CNN
+F 1 "Battery" H 3758 2590 50  0000 C CNN
+F 2 "Battery:BatteryHolder_Keystone_2462_2xAA" H 3650 2500 50  0001 C CNN
+F 3 "~" H 3650 2500 50  0001 C CNN
+	1    3650 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3850 2500 3900 2500
+Connection ~ 3850 2500
+Connection ~ 4100 2500
+Wire Wire Line
+	3850 2600 3850 4100
+Wire Wire Line
+	3850 4100 4400 4100
+Wire Wire Line
+	3900 2300 3900 2500
+Connection ~ 3900 2500
+Wire Wire Line
+	3900 2500 4100 2500
+$EndSCHEMATC
