@@ -35,21 +35,26 @@ Sensor|Package|Power up time (ms)|Read time (ms)|Active current (mA)|Standby cur
 
 Compare the current usage of both sensors (the initial section is reading RTC memory):
 
-**DHT22**
+**DHT22:**
+
 ![DHT22](dht22.png)
 
-**Si7021**
+**Si7021:**
+
 ![Si7021](Si7021.png)
 
 The **Si7021** outperforms in both precision, accuracy, speed and current!
 
 ### Schematics
 
-**Mains powered DHT22**
+**Mains powered DHT22:**
+
 ![Mains powered DHT22](nodemcu-mains.png)
 
-**Battery powered MCP1700/DHT22**
+**Battery powered MCP1700/DHT22:**
+
 [![Battery powered DHT22](https://user-images.githubusercontent.com/534681/81606445-059c6080-93cb-11ea-8b18-0f8d1f223274.png)](esp12f-dht22/)
 
-**Battery powered TPS62203/Si7021**
+**Battery powered TPS62203/Si7021:**
+
 [![Battery powered Si7021](https://user-images.githubusercontent.com/534681/96509627-3921c780-1254-11eb-96db-8e310c1789ee.png)](esp12f-si7021)

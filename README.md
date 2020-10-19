@@ -38,3 +38,17 @@ End goal is to print the smallest PCB + battery package and 3D print a case for 
 ## [Software](software/)
 
 Goal is to make the device last as long as possible on batteries.
+
+Current best energy usage, using the Si7021 sensor.
+
+**Startup:**
+
+![Startup current usage](analysis/measure-current/startup.png)
+
+This includes initial connection to WiFi, sensor reading, publication, writing to RTC memory.
+
+**Readings:**
+
+![In programme current usage](analysis/measure-current/readings.png)
+
+This shows the initial reading of RTC memory, sensor measurement and back to sleep, followed by a significant change and publication.
