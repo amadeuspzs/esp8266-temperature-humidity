@@ -52,3 +52,6 @@ This includes initial connection to WiFi, sensor reading, publication, writing t
 ![In programme current usage](analysis/measure-current/readings.png)
 
 This shows the initial reading of RTC memory, sensor measurement and back to sleep, followed by a significant change and publication.
+
+* Worst case (a reading every 10 minutes) this would last ~3 months on a 1500mAh battery.
+* Better case (heuristically [40 readings a day](analysis/temperature.ipynb)) this would last over a year on a 1500mAh battery.
