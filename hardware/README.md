@@ -22,7 +22,7 @@ Two options:
 Regulator|Type|Quiescent Current (uA)|V<sub>in</sub> (V)|Max current (mA)
 ---|---|---|---|---
 [MCP1700](https://www.microchip.com/wwwproducts/en/MCP1700)|LDO|1.6|2.3-6|250
-[TPS62203](https://www.ti.com/lit/ds/symlink/tps61322.pdf?ts=1602954670088)|Buck|6.5|0.9-5.5|1800
+[TPS61322](https://www.ti.com/lit/ds/symlink/tps61322.pdf?ts=1602954670088)|Buck|6.5|0.9-5.5|1800
 
 Tests were unable to distinguish significant difference in current usage between the regulators chosen.
 
@@ -55,6 +55,6 @@ The **Si7021** outperforms in both precision, accuracy, speed and current!
 
 [![Battery powered DHT22](https://user-images.githubusercontent.com/534681/81606445-059c6080-93cb-11ea-8b18-0f8d1f223274.png)](esp12f-dht22/)
 
-**Battery powered TPS62203/Si7021:**
+**Battery powered TPS61322/Si7021:**
 
 [![Battery powered Si7021](https://user-images.githubusercontent.com/534681/96509627-3921c780-1254-11eb-96db-8e310c1789ee.png)](esp12f-si7021)

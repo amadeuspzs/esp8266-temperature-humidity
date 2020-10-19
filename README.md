@@ -31,7 +31,7 @@ Tested with:
 Tested with:
 
 1. MCP1700 _fine but LDO so energy lost as heat_
-2. TPS62203 **current preferred regulator**
+2. TPS61322 **current preferred regulator**
 
 End goal is to print the smallest PCB + battery package and 3D print a case for discrete deployment.
 
