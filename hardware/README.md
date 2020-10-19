@@ -33,25 +33,23 @@ Sensor|Package|Power up time (ms)|Read time (ms)|Active current (mA)|Standby cur
 [DHT22](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)|Large|N/A|2000|1.5|50|1|0.2
 [Si7021](https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf)|DFN|18|10|0.15|0.06|0.2|0.08
 
-The DHT22 sensor is large, slow, inefficient and hungry; compare the following current measurements for a single measurement:
+Compare the current usage of both sensors (the initial section is reading RTC memory):
 
+**DHT22**
+![DHT22](dht22.png)
 
+**Si7021**
+![Si7021](Si7021.png)
 
+The **Si7021** outperforms in both precision, accuracy, speed and current!
 
-### Schematic
+### Schematics
 
-![schematic](https://user-images.githubusercontent.com/534681/81606445-059c6080-93cb-11ea-8b18-0f8d1f223274.png)
+**Mains powered DHT22**
+![Mains powered DHT22](nodemcu-mains.png)
 
+**Battery powered MCP1700/DHT22**
+[![Battery powered DHT22](https://user-images.githubusercontent.com/534681/81606445-059c6080-93cb-11ea-8b18-0f8d1f223274.png)](esp12f-dht22/)
 
-### KiCad
-
-- [X] Schematic
-- [ ] PCB
-
-## Mains powered
-
-Features:
-
-* USB powered via NodeMCU board
-
-![diagram](nodemcu-mains.png)
+**Battery powered TPS62203/Si7021**
+[![Battery powered Si7021](https://user-images.githubusercontent.com/534681/96509627-3921c780-1254-11eb-96db-8e310c1789ee.png)](esp12f-si7021)
