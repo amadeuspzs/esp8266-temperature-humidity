@@ -29,6 +29,7 @@ Battery|Cost (£)|Capacity (mAh)|Unit Cost (p/mAh)|Connector
 [CrazePony](https://www.amazon.co.uk/Crazepony-UK-1600mAh-battery-Connector-Quadcopter/dp/B07SPZXRWZ/ref=pd_lpo_23_t_1/261-7154536-8133442?_encoding=UTF8&pd_rd_i=B07SPZXRWZ&pd_rd_r=8bb8eb57-78a6-462a-835d-635cbd35c5ef&pd_rd_w=I1nUP&pd_rd_wg=d5kyX&pf_rd_p=7b8e3b03-1439-4489-abd4-4a138cf4eca6&pf_rd_r=214X49VS5NY38MYPG7E1&psc=1&refRID=214X49VS5NY38MYPG7E1)|5.50|1600|0.34|JST RCY (BEC)
 [Adafruit LiPo](https://www.adafruit.com/product/1578)|6.00|500|1.20|JST PH
 [Cool Components](https://coolcomponents.co.uk/products/lithium-polymer-battery-1000mah?_pos=7&_sid=3b7614679&_ss=r)|7.50|1000|0.75|JST PH
+["LG" 18650](https://www.ebay.co.uk/itm/Genuine-LG-HG2-18650e-3000mAh-30A-3-7V-Rechargeable-Battery-With-Free-CASE/254800295445?hash=item3b5347f615:g:0f4AAOSwlIxfpa97)|5.49|3000|0.18|None - use case
 
 ##### Connectors
 
