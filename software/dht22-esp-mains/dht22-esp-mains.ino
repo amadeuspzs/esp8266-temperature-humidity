@@ -100,16 +100,24 @@ void loop() {
   // only publish new reading if outside repeatability range
   if (temperatureDifference >= dhtTemperatureChangeThreshold) {
     Serial.println("Temperature change detected - publishing");
-    client.publish(temperature_topic, String(temperature).c_str(), true);
-    previousTemperature = temperature;
+    if (isnan(temperature)) {
+      Serial.println("NaN detected on temperature, skipping");
+    } else {
+      client.publish(temperature_topic, String(temperature).c_str(), true);
+      previousTemperature = temperature;
+    } // end if NaN
   } else {
     Serial.println("No significant temperature change detected - skipping");
   }
 
   if (humidityDifference >= dhtHumidityChangeThreshold) {
     Serial.println("Humidity change detected - publishing");
-    client.publish(humidity_topic, String(humidity).c_str(), true);
-    previousHumidity = humidity;
+    if (isnan(humidity)) {
+      Serial.println("NaN detected on humidity, skipping");
+    } else {
+      client.publish(humidity_topic, String(humidity).c_str(), true);
+      previousHumidity = humidity;
+    } // end if NaN
   } else {
     Serial.println("No significant humidity change detected - skipping");
   }

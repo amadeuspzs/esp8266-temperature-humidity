@@ -20,8 +20,6 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
-ADC_MODE(ADC_VCC); // for low power detection
-
 // CRC function used to ensure data validity
 uint32_t calculateCRC32(const uint8_t *data, size_t length);
 
@@ -40,12 +38,12 @@ struct {
   struct {
     float temperature;    // 4 bytes
     float humidity;       // 4 bytes
-    float vcc;            // 4 bytes
+    float vbatt;            // 4 bytes
     uint8_t bssid[6];       // 6 bytes
     uint8_t channel;        // 1 byte
     bool publish;           // 1 byte
     bool publishHumidity; // 1 byte
-    bool publishVcc;      // 1 byte
+    bool publishVbatt;      // 1 byte
     uint8_t padding[2];   // 2 bytes
   } data;
 } rtcData;
@@ -55,16 +53,26 @@ float temperature, humidity;
 
 void setup() {
 
+  if (debug) {
+    Serial.begin(74880);
+    while (!Serial) {}
+    Serial.setDebugOutput(true);
+    Serial.println("Starting up");
+    Serial.flush();
+  }
+  
   // switch off WiFi until we need it
   WiFi.mode(WIFI_OFF);
   WiFi.forceSleepBegin();
   delay(1);
 
-  if (debug) {
-    Serial.begin(74880);
-    while (!Serial) {}
-    Serial.setDebugOutput(true);
-  }
+  // power down the Si7021 sensor until we need it
+  pinMode(siPowerPin,OUTPUT);
+  digitalWrite(siPowerPin, HIGH); // inverted
+
+  // power down the ADC
+  pinMode(adcPowerPin, OUTPUT);
+  digitalWrite(adcPowerPin, HIGH); // inverted
 
   // read RTC memory
   if (ESP.rtcUserMemoryRead(0, (uint32_t*) &rtcData, sizeof(rtcData))) {
@@ -78,7 +86,7 @@ void setup() {
       // flag to publish
       rtcData.data.publish = true;
       rtcData.data.publishHumidity = true;
-      rtcData.data.publishVcc = true;
+      rtcData.data.publishVbatt = true;
     } else {
       if (debug) {
         Serial.println("CRC32 check ok, data is probably valid.");
@@ -96,8 +104,8 @@ void setup() {
         Serial.println(rtcData.data.temperature);
         Serial.print("RTC Humidity: ");
         Serial.println(rtcData.data.humidity);
-        Serial.print("RTC Vcc: ");
-        Serial.println(rtcData.data.vcc);
+        Serial.print("RTC Vbatt: ");
+        Serial.println(rtcData.data.vbatt);
         Serial.print("RTC WiFi channel: ");
         Serial.println(rtcData.data.channel);
         Serial.print("RTC BSSID: ");
@@ -109,8 +117,8 @@ void setup() {
         Serial.println(rtcData.data.publish);
         Serial.print("RTC publish humidity: ");
         Serial.println(rtcData.data.publishHumidity);
-        Serial.print("RTC publish vcc: ");
-        Serial.println(rtcData.data.publishVcc);
+        Serial.print("RTC publish vbatt: ");
+        Serial.println(rtcData.data.publishVbatt);
       }
       quickConnect = true;
     }
@@ -121,7 +129,7 @@ void setup() {
     // flag to publish
     rtcData.data.publish = true;
     rtcData.data.publishHumidity = true;
-    rtcData.data.publishVcc = true;
+    rtcData.data.publishVbatt = true;
   }
 
   // we should have RF, and have been asked to publish
@@ -133,8 +141,8 @@ void setup() {
       Serial.println(rtcData.data.publish); // should always be true
       Serial.print("Humidity: ");
       Serial.println(rtcData.data.publishHumidity);
-      Serial.print("Vcc: ");
-      Serial.println(rtcData.data.publishVcc);
+      Serial.print("Vbatt: ");
+      Serial.println(rtcData.data.publishVbatt);
       Serial.println();
       Serial.print("Connecting to ");
       Serial.println(wifi_ssid);
@@ -213,7 +221,7 @@ void setup() {
     // publish requested data
     client.publish(temperature_topic, String(rtcData.data.temperature).c_str(), true);
     if (rtcData.data.publishHumidity) client.publish(humidity_topic, String(rtcData.data.humidity).c_str(), true);
-    if (rtcData.data.publishVcc) client.publish(vcc_topic, String(rtcData.data.vcc).c_str(), true);
+    if (rtcData.data.publishVbatt) client.publish(vbatt_topic, String(rtcData.data.vbatt).c_str(), true);
 
     client.disconnect();
 
@@ -233,7 +241,7 @@ void setup() {
     // update values
     rtcData.data.publish = false;
     rtcData.data.publishHumidity = false;
-    rtcData.data.publishVcc = false;
+    rtcData.data.publishVbatt = false;
 
     saveMemory();
 
@@ -276,21 +284,21 @@ void setup() {
         if (debug) Serial.println("Skipping humidity publication");
       }
 
-      float vcc = readVcc();
-      float vccDifference = fabs(rtcData.data.vcc-vcc);
+      float vbatt = readVbatt();
+      float vbattDifference = fabs(rtcData.data.vbatt-vbatt);
 
       if (debug) {
-        Serial.print("Vcc difference: ");
-        Serial.println(vccDifference);
+        Serial.print("Vbatt difference: ");
+        Serial.println(vbattDifference);
       }
 
       // prepare to publish vcc
-      if (vccDifference >= 0.01) {
-        if (debug) Serial.println("Vcc change detected; will publish");
-        rtcData.data.publishVcc = true;
-        rtcData.data.vcc = vcc;
+      if (vbattDifference >= 0.01) {
+        if (debug) Serial.println("Vbatt change detected; will publish");
+        rtcData.data.publishVbatt = true;
+        rtcData.data.vbatt = vbatt;
       } else {
-        if (debug) Serial.println("Skipping Vcc publication");
+        if (debug) Serial.println("Skipping Vbatt publication");
       }
 
       saveMemory();
@@ -360,14 +368,14 @@ void saveMemory() {
       Serial.println(rtcData.data.temperature);
       Serial.print("Humidity: ");
       Serial.println(rtcData.data.humidity);
-      Serial.print("Vcc: ");
-      Serial.println(rtcData.data.vcc);
+      Serial.print("Vbatt: ");
+      Serial.println(rtcData.data.vbatt);
       Serial.print("Publish: ");
       Serial.println(rtcData.data.publish);
       Serial.print("Publish humidity: ");
       Serial.println(rtcData.data.publishHumidity);
-      Serial.print("Publish vcc: ");
-      Serial.println(rtcData.data.publishVcc);
+      Serial.print("Publish vbatt: ");
+      Serial.println(rtcData.data.publishVbatt);
     }
   } else {
     if (debug) Serial.println("Failed to write to memory");
@@ -375,15 +383,43 @@ void saveMemory() {
 
 } // end saveMemory
 
-// read Vcc
-float readVcc() {
-    float vcc = ESP.getVcc() / 1000.0;
+float readVbatt() {
+
     if (debug) {
-      Serial.print("Reading Vcc: ");
-      Serial.println(vcc);
+      Serial.println("Measuring battery voltage");
     }
-    return vcc;
-} // end readVcc
+
+    // switch on ADC circuit
+    digitalWrite(adcPowerPin, LOW); // inverted
+
+    if (debug) {
+      Serial.println("ADC voltage enabled for 3s");
+      delay(3000);
+    }
+    
+    int adc = analogRead(A0);
+    if (debug) {
+      Serial.print("ADC reading: ");
+      Serial.println(adc);
+    }
+    
+    // switch off ADC circuit
+    digitalWrite(adcPowerPin, HIGH); // inverted
+
+    if (debug) {
+      Serial.println("ADC voltage disabled for 3s");
+      delay(3000);
+    }
+    
+    float vbatt = 4.2 * mapfloat(adc,0,1024,0,1); // LiPo = 4.2V max
+
+    if (debug) {
+      Serial.print("Vbatt: ");
+      Serial.println(vbatt);
+    }
+
+    return vbatt;
+} // end readVbatt
 
 // read all sensors and store in rtcData
 void readAllSensors() {
@@ -391,19 +427,28 @@ void readAllSensors() {
     // store in RTC variables
     rtcData.data.temperature = temperature;
     rtcData.data.humidity = humidity;
-    rtcData.data.vcc = readVcc();
+    rtcData.data.vbatt = readVbatt();
 } // end readAllSensors
 
 void readSi7021() {
 
+  if (debug) {
+    //Serial.println("Powering on the Si7021 sensor in 1 seconds..."); 
+    //delay(3000);
+  }
+  
   // switch on the Si7021 sensor
-  pinMode(siPowerPin,OUTPUT);
-  digitalWrite(siPowerPin, HIGH);
+  digitalWrite(siPowerPin, LOW); // inverted
+
+  if (debug) {
+    //Serial.println("Si7021 sensor is now powered on...");
+    //delay(3000);
+  }
 
   // allow the Si7021 sensor time to wake up
   delay(25); 
   if (!sensor.begin()) {
-    if (debug) Serial.println("Did not find Si7021 sensor!");
+    if (debug) Serial.println("Did not find Si7021 sensor! Crashing now...");
     while (true)
       ; // causes a crash/reboot
   }
@@ -441,5 +486,10 @@ void readSi7021() {
   }
 
   // turn off Si7021 sensor
-  digitalWrite(siPowerPin, LOW);
+  digitalWrite(siPowerPin, HIGH); // inverted
 } // end readSi7021
+
+float mapfloat(float x, float in_min, float in_max, float out_min, float out_max)
+{
+ return float ( (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+} // end mapfloat

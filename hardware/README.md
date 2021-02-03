@@ -40,12 +40,13 @@ JST RCY|
 [JST PH 2pin](https://uk.farnell.com/jst-japan-solderless-terminals/b2b-ph-sm4-tb-lf-sn/connector-header-smt-2mm-2way/dp/9492534?MER=sy-me-pd-mi-acce)|2.0|Right angle PCB|0.45
 **[JST PH 3pin](https://uk.farnell.com/jst-japan-solderless-terminals/b3b-ph-sm4-tb-lf-sn/connector-header-smt-2mm-3way/dp/9492542)**|**2.0**|**Right angle PCB**|**0.52**
 
-### Regulator
+### 3.3V Regulators
 
-Regulator|Type|Quiescent Current (uA)|V<sub>in</sub> (V)|Max current (mA)
----|---|---|---|---
-[MCP1700](https://www.microchip.com/wwwproducts/en/MCP1700)|LDO|1.6|2.3-6|250
-[TPS61322](https://www.ti.com/lit/ds/symlink/tps61322.pdf?ts=1602954670088)|Buck|6.5|0.9-5.5|1800
+Regulator|Type|Quiescent Current (uA)|V<sub>in</sub> (V)|Max current (mA)|Package
+---|---|---|---|---|---
+[MCP1700](https://www.microchip.com/wwwproducts/en/MCP1700)|LDO|1.6|3.6-6|250|SOT-23
+[TPS61322](https://www.ti.com/lit/ds/symlink/tps61322.pdf?ts=1602954670088)|Boost|6.5|0.9-3.3|1800|SOT-23
+[TPS61022](https://www.ti.com/lit/ds/symlink/tps61022.pdf)|Boost|26|0.5-3.3|8000|VQFN
 
 Tests were unable to distinguish significant difference in current usage between the regulators chosen.
 
