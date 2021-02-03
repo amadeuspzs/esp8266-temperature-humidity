@@ -45,10 +45,7 @@ JST RCY|
 Regulator|Type|Quiescent Current (uA)|V<sub>in</sub> (V)|Max current (mA)|Package
 ---|---|---|---|---|---
 [MCP1700](https://www.microchip.com/wwwproducts/en/MCP1700)|LDO|1.6|3.6-6|250|SOT-23
-[TPS61322](https://www.ti.com/lit/ds/symlink/tps61322.pdf?ts=1602954670088)|Boost|6.5|0.9-3.3|1800|SOT-23
-[TPS61022](https://www.ti.com/lit/ds/symlink/tps61022.pdf)|Boost|26|0.5-3.3|8000|VQFN
-
-Tests were unable to distinguish significant difference in current usage between the regulators chosen.
+[TPS62203](https://www.ti.com/product/TPS62203)|Buck|15|3.6-6|300|SOT-23
 
 ### Sensors
 
@@ -75,10 +72,6 @@ The **Si7021** outperforms in both precision, accuracy, speed and current!
 
 ![Mains powered DHT22](nodemcu-mains.png)
 
-**Battery powered MCP1700/DHT22:**
+**Battery powered TPS62203/MCP1700 Si7021:**
 
-[![Battery powered DHT22](https://user-images.githubusercontent.com/534681/81606445-059c6080-93cb-11ea-8b18-0f8d1f223274.png)](esp12f-dht22/)
-
-**Battery powered TPS61322/Si7021:**
-
-[![Battery powered Si7021](https://user-images.githubusercontent.com/534681/96509627-3921c780-1254-11eb-96db-8e310c1789ee.png)](esp12f-si7021)
+[![Battery powered Si7021](https://user-images.githubusercontent.com/534681/106813903-82fab600-6669-11eb-8dda-4ef510f002e0.png)](esp12f-si7021)
