@@ -129,9 +129,9 @@ $Comp
 L Connector:Conn_01x03_Male J1
 U 1 1 5EB963B1
 P 3770 2600
-F 0 "J1" H 3770 2840 50  0000 C CNN
-F 1 "Battery" H 3760 2770 50  0000 C CNN
-F 2 "Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal" H 3770 2600 50  0001 C CNN
+F 0 "J1" H 3770 2890 50  0000 C CNN
+F 1 "JST PH3" H 3760 2810 50  0000 C CNN
+F 2 "Connector_JST:JST_PH_S3B-PH-SM4-TB_1x03-1MP_P2.00mm_Horizontal" H 3770 2600 50  0001 C CNN
 F 3 "~" H 3770 2600 50  0001 C CNN
 	1    3770 2600
 	1    0    0    -1  
@@ -231,7 +231,7 @@ U 1 1 5EBAFBE3
 P 6850 3150
 F 0 "JP1" V 6804 3198 50  0000 L CNN
 F 1 "Download" V 6895 3198 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Horizontal" H 6850 3150 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm" H 6850 3150 50  0001 C CNN
 F 3 "~" H 6850 3150 50  0001 C CNN
 	1    6850 3150
 	0    1    1    0   
@@ -338,7 +338,7 @@ U 1 1 5F8ED60F
 P 8350 2850
 F 0 "J2" H 8322 2782 50  0000 R CNN
 F 1 "UART" H 8322 2873 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Horizontal" H 8350 2850 50  0001 C CNN
+F 2 "kicad-custom:PinHeader_1x4_P2.54mm_Horizontal_SMD" H 8350 2850 50  0001 C CNN
 F 3 "~" H 8350 2850 50  0001 C CNN
 	1    8350 2850
 	-1   0    0    1   
@@ -393,8 +393,6 @@ F 3 "" H 4110 2500 50  0001 C CNN
 	1    4110 2500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3970 2500 3990 2500
 Connection ~ 4060 2500
 Wire Wire Line
 	3970 2700 4010 2700
@@ -609,113 +607,58 @@ Wire Wire Line
 	6700 3400 5790 3400
 Wire Wire Line
 	5790 2990 5790 3400
-$Comp
-L Regulator_SwitchingNEW:TPS62203DBV U4
-U 1 1 6025E42A
-P 4690 1980
-F 0 "U4" H 4690 2405 50  0000 C CNN
-F 1 "TPS62203DBV" H 4690 2314 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-23-5" H 4740 1830 50  0001 L CIN
-F 3 "http://www.ti.com/lit/ds/symlink/tps62201.pdf" H 4690 2080 50  0001 C CNN
-	1    4690 1980
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4390 1780 4390 1980
-$Comp
-L Device:C C7
-U 1 1 60265B0F
-P 5750 1870
-F 0 "C7" H 5865 1916 50  0000 L CNN
-F 1 "10uF" H 5865 1825 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 5788 1720 50  0001 C CNN
-F 3 "~" H 5750 1870 50  0001 C CNN
-	1    5750 1870
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C6
-U 1 1 60266353
-P 4140 1870
-F 0 "C6" H 4255 1916 50  0000 L CNN
-F 1 "4.7uF" H 4255 1825 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 4178 1720 50  0001 C CNN
-F 3 "~" H 4140 1870 50  0001 C CNN
-	1    4140 1870
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4990 1780 5090 1780
-Wire Wire Line
-	5590 1780 5590 1980
-Wire Wire Line
-	5590 1980 4990 1980
-Wire Wire Line
-	5590 1780 5670 1780
-Wire Wire Line
-	5720 1780 5720 1720
-Wire Wire Line
-	5720 1720 5750 1720
-Wire Wire Line
-	4690 2180 4770 2180
-Wire Wire Line
-	5750 2180 5750 2020
-Wire Wire Line
-	4140 1720 4390 1720
-Wire Wire Line
-	4390 1720 4390 1780
-Connection ~ 4390 1780
-Wire Wire Line
-	4140 2020 4430 2020
-Wire Wire Line
-	4430 2020 4430 2180
-Wire Wire Line
-	4430 2180 4690 2180
-Connection ~ 4690 2180
-Wire Wire Line
-	4770 2180 4770 2870
 Wire Wire Line
 	4770 2870 4690 2870
-Connection ~ 4770 2180
-Wire Wire Line
-	4770 2180 5750 2180
 Connection ~ 4690 2870
 Wire Wire Line
 	4690 2870 4690 4100
+Wire Wire Line
+	3970 2500 4060 2500
 $Comp
-L Device:L L1
-U 1 1 60290FFA
-P 5240 1780
-F 0 "L1" V 5430 1780 50  0000 C CNN
-F 1 "10uH" V 5339 1780 50  0000 C CNN
-F 2 "kicad-custom:L_Bourns-SRN4012" H 5240 1780 50  0001 C CNN
-F 3 "~" H 5240 1780 50  0001 C CNN
-	1    5240 1780
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	5390 1780 5590 1780
-Connection ~ 5590 1780
-Wire Wire Line
-	4140 1720 3990 1720
-Wire Wire Line
-	3990 1720 3990 2500
-Connection ~ 4140 1720
-Connection ~ 3990 2500
-Wire Wire Line
-	3990 2500 4060 2500
-$Comp
-L power:+3.3V #PWR0101
-U 1 1 602DE43D
-P 5670 1780
-F 0 "#PWR0101" H 5670 1630 50  0001 C CNN
-F 1 "+3.3V" H 5685 1953 50  0000 C CNN
-F 2 "" H 5670 1780 50  0001 C CNN
-F 3 "" H 5670 1780 50  0001 C CNN
-	1    5670 1780
+L Connector:Conn_01x02_Male J3
+U 1 1 604EB9D8
+P 3330 2560
+F 0 "J3" H 3438 2741 50  0000 C CNN
+F 1 "JST PH2" H 3380 2660 50  0000 C CNN
+F 2 "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal" H 3330 2560 50  0001 C CNN
+F 3 "~" H 3330 2560 50  0001 C CNN
+	1    3330 2560
 	1    0    0    -1  
 $EndComp
-Connection ~ 5670 1780
+$Comp
+L Connector:Conn_01x02_Male J4
+U 1 1 604ED607
+P 3330 2920
+F 0 "J4" H 3438 3101 50  0000 C CNN
+F 1 "JST GH2" H 3380 3020 50  0000 C CNN
+F 2 "Connector_JST:JST_GH_SM02B-GHS-TB_1x02-1MP_P1.25mm_Horizontal" H 3330 2920 50  0001 C CNN
+F 3 "~" H 3330 2920 50  0001 C CNN
+	1    3330 2920
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
-	5670 1780 5720 1780
+	3530 2560 3740 2560
+Wire Wire Line
+	3740 2560 3740 2500
+Wire Wire Line
+	3740 2500 3850 2500
+Connection ~ 3970 2500
+Wire Wire Line
+	3530 2660 3740 2660
+Wire Wire Line
+	3740 2660 3740 2700
+Wire Wire Line
+	3740 2700 3970 2700
+Connection ~ 3970 2700
+Wire Wire Line
+	3530 2920 3850 2920
+Wire Wire Line
+	3850 2920 3850 2500
+Connection ~ 3850 2500
+Wire Wire Line
+	3850 2500 3970 2500
+Wire Wire Line
+	3530 3020 3970 3020
+Wire Wire Line
+	3970 3020 3970 2700
 $EndSCHEMATC
