@@ -9,7 +9,7 @@
 
 bool debug = false; // serial output
 bool dhcp = false; // whether to obtain an IP address (slower)
-
+ 
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <Adafruit_Si7021.h>
