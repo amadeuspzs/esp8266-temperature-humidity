@@ -68,5 +68,5 @@ This shows the initial reading of RTC memory, sensor measurement, sleep and wake
 
 **Energy estimates**
 
-* Worst case (a reading every 10 minutes): `4.75mAh/day` this should last **~ 9 months** on a 1200mAh battery.
+* Worst case (a reading every 10 minutes): `4.75mAh/day` this should last ~**9 months** on a 1200mAh battery.
 * Better case (heuristically [50 readings a day](analysis/temperature.ipynb)): `2.19mAh/day` this should last **over a year** on a 1200mAh battery.
