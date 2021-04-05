@@ -410,10 +410,13 @@ float readVbatt() {
       Serial.println("ADC voltage disabled for 3s");
       delay(3000);
     }
-    
-    float vbatt = 4.2 * mapfloat(adc,0,1024,0,1); // LiPo = 4.2V max
+
+    float vadc = mapfloat(adc,0,1023,0,vref);
+    float vbatt = ((R1 + R2)/R2) * vadc;
 
     if (debug) {
+      Serial.print("Vadc: ");
+      Serial.println(vadc);
       Serial.print("Vbatt: ");
       Serial.println(vbatt);
     }
@@ -433,16 +436,16 @@ void readAllSensors() {
 void readSi7021() {
 
   if (debug) {
-    //Serial.println("Powering on the Si7021 sensor in 1 seconds..."); 
-    //delay(3000);
+    Serial.println("Powering on the Si7021 sensor in 3s..."); 
+    delay(3000);
   }
   
   // switch on the Si7021 sensor
   digitalWrite(siPowerPin, LOW); // inverted
 
   if (debug) {
-    //Serial.println("Si7021 sensor is now powered on...");
-    //delay(3000);
+    Serial.println("Si7021 sensor is now powered on for 3s...");
+    delay(3000);
   }
 
   // allow the Si7021 sensor time to wake up

@@ -15,6 +15,9 @@ IPAddress subnet(0,0,0,0);
 #define temperatureChangeThreshold 0.08 // repeatability from the data sheet
 #define humidityChangeThreshold 0.2 // repeatability from the data sheet
 #define adcPowerPin 13 // GPIO13 for ADC
+#define R1 330.0 // units don't matter as long as they
+#define R2 100.0 // are consistent e.g. Kohms
+#define vref 1.0 // internal vref (V)
 
 // Reporting
 #define polling_m 10 // every X minutes
