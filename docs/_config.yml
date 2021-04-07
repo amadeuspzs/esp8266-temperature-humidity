@@ -1,2 +1,4 @@
 theme: jekyll-theme-minimal
+description: Low power MQTT temperature/humidity sensor
 logo: /logo.png
+show_downloads: true
