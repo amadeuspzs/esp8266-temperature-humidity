@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+## Features
 
-You can use the [editor on GitHub](https://github.com/amadeuspzs/esp8266-temperature-humidity/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+* Accurate Si7021 temperature and humidity sensor
+* MQTT integration with e.g. Home Assistant via ESP-12F
+* Low power usage (9 months typical lifetime with rechargeable 1200mAh LiPo battery)
+* PH2, PH3 and GH2 connectors for range of LiPos
+* Programming header and jumper for quick flashing
+* Battery voltage indicator for power management
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## PCB
 
-### Markdown
+* Download Gerber files
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Software
 
-```markdown
-Syntax highlighted code block
+* Define your SSID, passphrase and MQTT server for quick integration
 
-# Header 1
-## Header 2
-### Header 3
+## Case
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/amadeuspzs/esp8266-temperature-humidity/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+* 3D printed case
