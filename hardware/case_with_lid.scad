@@ -6,7 +6,7 @@ pcb_h = 8; // PCB height, assembled
 batt_w = 38;  // Battery width
 batt_l = 51;  // Battery length
 batt_h = 6;  // Battery height
-
+sensor_pos_x = 20; // Sensor position
 overall_w = max(batt_w, pcb_w) + 2*wallThickness;
 overall_l = max(batt_l, pcb_l) + 2*wallThickness;
 overall_h = batt_h + pcb_h + 2*wallThickness;
@@ -53,7 +53,18 @@ module round_box(l=40,w=30,h=30,bt=2,wt=2,lt=2,r=5,){
 		round_cube(l=l,w=w,h=h-lt,r=r);
 		translate ([wt, wt, bt]) 
 		round_cube(l=l-wt*2,w=w-wt*2,h=h,r=r-wt);
-	}
+        // air holes
+        translate([sensor_pos_x,0,7]) cube([10,3,1]);
+        translate([sensor_pos_x,0,9]) cube([10,3,1]);
+        translate([sensor_pos_x,0,11]) cube([10,3,1]);
+        translate([sensor_pos_x,0,13]) cube([10,3,1]);        
+        translate([sensor_pos_x,boxWidth-(2*wallThickness),7]) cube([10,5,1]);
+        translate([sensor_pos_x,boxWidth-(2*wallThickness),9]) cube([10,5,1]);
+        translate([sensor_pos_x,boxWidth-(2*wallThickness),11]) cube([10,5,1]);
+        translate([sensor_pos_x,boxWidth-(2*wallThickness),13]) cube([10,5,1]);
+	}       
+
+
 	//use two box rims. one to make a slope to support the lid
 	roundBoxRim();
 	translate ([0, 0, -wt]) roundBoxRim();
@@ -81,7 +92,9 @@ module roundBoxRim(l=boxLength,
 module roundBoxLid(l=40,w=30,h=3,wt=2,t=2,et=0.5,r=5,notch=true){
 	translate ([l, 0, 0]) 
 	rotate (a = [0, 0, 180]) 
+
 	difference(){
+
 		round_cube(l=l,w=w,h=h,t=t,r=r);
 
 		translate ([-1, 0, et]) rotate (a = [45, 0, 0])  cube (size = [l+2, h*2, h*2]); 
@@ -90,12 +103,15 @@ module roundBoxLid(l=40,w=30,h=3,wt=2,t=2,et=0.5,r=5,notch=true){
 		if (notch==true){
 			translate([2,w/2,h+0.001]) thumbNotch(10/2,72,t);
 		}
-        // air holes
-        translate([20-2,3,-h]) cube([10,1,5]);
-        translate([20-2,5,-h]) cube([10,1,5]);
-        translate([20-2,7,-h]) cube([10,1,5]);
-        translate([20-2,9,-h]) cube([10,1,5]);
+        x = sensor_pos_x+2*wallThickness+lidClearance+lidEdgeThickness;
+        translate([x,wallThickness+1,-lidThickness]) cube([10,1,lidThickness*3]);
+        translate([x,wallThickness+3,-lidThickness]) cube([10,1,lidThickness*3]);
+        translate([x,wallThickness+5,-lidThickness]) cube([10,1,lidThickness*3]);
+        translate([x,wallThickness+7,-lidThickness]) cube([10,1,lidThickness*3]);
 	}
+
+    
+
 }
 
 module thumbNotch(
