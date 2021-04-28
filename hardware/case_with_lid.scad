@@ -1,3 +1,5 @@
+// Todo, the rotation of the lid makes the vent alignment hard-coded
+
 wallThickness=2;
 
 pcb_w = 34;   // PCB width
