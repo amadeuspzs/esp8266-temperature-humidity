@@ -1,4 +1,4 @@
-// Todo, the rotation of the lid makes the vent alignment hard-coded
+// Todo, the rotation of the lid makes the lid vent alignment hard-coded
 
 wallThickness=2;
 
@@ -8,7 +8,6 @@ pcb_h = 8; // PCB height, assembled
 batt_w = 38;  // Battery width
 batt_l = 51;  // Battery length
 batt_h = 6;  // Battery height
-sensor_pos_x = 20; // Sensor position
 overall_w = max(batt_w, pcb_w) + 2*wallThickness;
 overall_l = max(batt_l, pcb_l) + 2*wallThickness;
 overall_h = batt_h + pcb_h + 2*wallThickness;
@@ -24,6 +23,9 @@ lidClearance=0.2;
 lidEdgeThickness=0.5;
 // Notch in the lid
 withNotch=true;//true;//[true:false]
+
+sensor_pos_x = 24; // Sensor position
+sensor_pos_lid_x = (overall_l - 1.5*sensor_pos_x) + wallThickness + lidEdgeThickness;
 
 /* [Global] */
 if (itemsShown=="box") showBox();
@@ -64,6 +66,14 @@ module round_box(l=40,w=30,h=30,bt=2,wt=2,lt=2,r=5,){
         translate([sensor_pos_x,boxWidth-(2*wallThickness),9]) cube([10,5,1]);
         translate([sensor_pos_x,boxWidth-(2*wallThickness),11]) cube([10,5,1]);
         translate([sensor_pos_x,boxWidth-(2*wallThickness),13]) cube([10,5,1]);
+        translate([-wallThickness,boxWidth/2,7]) cube([5,10,1]);
+        translate([-wallThickness,boxWidth/2,9]) cube([5,10,1]);
+        translate([-wallThickness,boxWidth/2,11]) cube([5,10,1]);
+        translate([-wallThickness,boxWidth/2,13]) cube([5,10,1]);
+        translate([boxLength-wallThickness,boxWidth/2,7]) cube([5,10,1]);
+        translate([boxLength-wallThickness,boxWidth/2,9]) cube([5,10,1]);
+        translate([boxLength-wallThickness,boxWidth/2,11]) cube([5,10,1]);
+        translate([boxLength-wallThickness,boxWidth/2,13]) cube([5,10,1]);
 	}       
 
 
@@ -105,11 +115,10 @@ module roundBoxLid(l=40,w=30,h=3,wt=2,t=2,et=0.5,r=5,notch=true){
 		if (notch==true){
 			translate([2,w/2,h+0.001]) thumbNotch(10/2,72,t);
 		}
-        x = sensor_pos_x+2*wallThickness+lidClearance+lidEdgeThickness;
-        translate([x,wallThickness+1,-lidThickness]) cube([10,1,lidThickness*3]);
-        translate([x,wallThickness+3,-lidThickness]) cube([10,1,lidThickness*3]);
-        translate([x,wallThickness+5,-lidThickness]) cube([10,1,lidThickness*3]);
-        translate([x,wallThickness+7,-lidThickness]) cube([10,1,lidThickness*3]);
+        translate([sensor_pos_lid_x,wallThickness+1,-lidThickness]) cube([10,1,lidThickness*3]);
+        translate([sensor_pos_lid_x,wallThickness+3,-lidThickness]) cube([10,1,lidThickness*3]);
+        translate([sensor_pos_lid_x,wallThickness+5,-lidThickness]) cube([10,1,lidThickness*3]);
+        translate([sensor_pos_lid_x,wallThickness+7,-lidThickness]) cube([10,1,lidThickness*3]);
 	}
 
     
