@@ -7,8 +7,8 @@
  *
  */
 
-bool debug = false; // serial output
-bool dhcp = false; // whether to obtain an IP address (slower)
+#define debug false // serial output at 74880 baud
+#define dhcp false // whether to obtain an IP address (slower) via dhcp
  
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
@@ -76,9 +76,7 @@ void setup() {
 
   // read RTC memory
   if (ESP.rtcUserMemoryRead(0, (uint32_t*) &rtcData, sizeof(rtcData))) {
-
     uint32_t crcOfData = calculateCRC32((uint8_t*) &rtcData.data, sizeof(rtcData.data));
-
     if (crcOfData != rtcData.crc32) {
       if (debug) Serial.println("CRC32 in RTC memory doesn't match CRC32 of data. Data is probably invalid!");
       // take fresh readings
@@ -226,10 +224,10 @@ void setup() {
     client.disconnect();
 
     // always store BSSID and channel in case device hops APs
-    if (debug) Serial.println("Storing BSSID: ");
     rtcData.data.channel = WiFi.channel();
     memcpy( rtcData.data.bssid, WiFi.BSSID(), 6 ); // Copy 6 bytes of BSSID (AP's MAC address)
     if (debug) {
+      Serial.print("Storing BSSID: ");
       for (int i=0; i<6; i++) {
         Serial.print(rtcData.data.bssid[i],HEX);
       }
@@ -321,6 +319,7 @@ void setup() {
 void loop() {
 } // end loop
 
+// calculate checksum of struct
 uint32_t calculateCRC32(const uint8_t *data, size_t length) {
   uint32_t crc = 0xffffffff;
   while (length--) {
@@ -355,6 +354,7 @@ void printMemory() {
   Serial.println();
 } // end printMemory
 
+// save data to rtc
 void saveMemory() {
   // Update CRC32 of data
   rtcData.crc32 = calculateCRC32((uint8_t*) &rtcData.data, sizeof(rtcData.data));
@@ -383,6 +383,7 @@ void saveMemory() {
 
 } // end saveMemory
 
+// read voltage of battery
 float readVbatt() {
 
     if (debug) {
@@ -433,6 +434,7 @@ void readAllSensors() {
     rtcData.data.vbatt = readVbatt();
 } // end readAllSensors
 
+// read Si7021 chip using Adafruit library
 void readSi7021() {
 
   if (debug) {
@@ -492,6 +494,7 @@ void readSi7021() {
   digitalWrite(siPowerPin, HIGH); // inverted
 } // end readSi7021
 
+// map two float ranges
 float mapfloat(float x, float in_min, float in_max, float out_min, float out_max)
 {
  return float ( (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
