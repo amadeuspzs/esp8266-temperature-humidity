@@ -1,4 +1,6 @@
-// Todo, the rotation of the lid makes the lid vent alignment hard-coded
+// Remixed from https://www.thingiverse.com/thing:189264
+// Todo: the rotation of the lid makes the lid vent alignment hard-coded; if you
+// change the size of the box the vent won't necessarily remain aligned
 
 wallThickness=2;
 
@@ -22,7 +24,7 @@ lidThickness=2;
 lidClearance=0.2;
 lidEdgeThickness=0.5;
 // Notch in the lid
-withNotch=true;//true;//[true:false]
+withNotch=true; //[true:false]
 
 sensor_pos_x = 24; // Sensor position
 sensor_pos_lid_x = (overall_l - 1.5*sensor_pos_x) + wallThickness + lidEdgeThickness;
@@ -33,7 +35,7 @@ if (itemsShown=="lid") showLid();
 if (itemsShown=="both"){showBox();showLid();}
 
 module showLid(){
-	translate ([0, -2*wallThickness, 0]) 
+	translate ([0, -2*wallThickness, 0])
 	roundBoxLid(l=boxLength-wallThickness,
 				w=boxWidth-2*wallThickness-lidClearance,
 				h=lidThickness,
@@ -53,15 +55,15 @@ module showBox(){
 }
 
 module round_box(l=40,w=30,h=30,bt=2,wt=2,lt=2,r=5,){
-	difference() { 
+	difference() {
 		round_cube(l=l,w=w,h=h-lt,r=r);
-		translate ([wt, wt, bt]) 
+		translate ([wt, wt, bt])
 		round_cube(l=l-wt*2,w=w-wt*2,h=h,r=r-wt);
         // air holes
         translate([sensor_pos_x,0,7]) cube([10,3,1]);
         translate([sensor_pos_x,0,9]) cube([10,3,1]);
         translate([sensor_pos_x,0,11]) cube([10,3,1]);
-        translate([sensor_pos_x,0,13]) cube([10,3,1]);        
+        translate([sensor_pos_x,0,13]) cube([10,3,1]);
         translate([sensor_pos_x,boxWidth-(2*wallThickness),7]) cube([10,5,1]);
         translate([sensor_pos_x,boxWidth-(2*wallThickness),9]) cube([10,5,1]);
         translate([sensor_pos_x,boxWidth-(2*wallThickness),11]) cube([10,5,1]);
@@ -74,7 +76,7 @@ module round_box(l=40,w=30,h=30,bt=2,wt=2,lt=2,r=5,){
         translate([boxLength-wallThickness,boxWidth/2,9]) cube([5,10,1]);
         translate([boxLength-wallThickness,boxWidth/2,11]) cube([5,10,1]);
         translate([boxLength-wallThickness,boxWidth/2,13]) cube([5,10,1]);
-	}       
+	}
 
 
 	//use two box rims. one to make a slope to support the lid
@@ -89,10 +91,10 @@ module roundBoxRim(l=boxLength,
 				   r=cornerRadius,
 				   wt=wallThickness,
 				   lt=lidThickness){
-	difference() { 
-		translate ([0, 0, h-lt]) 
+	difference() {
+		translate ([0, 0, h-lt])
 		round_cube(l=l,w=w,h=lt,r=r);
-		translate ([wt+lt,wt+lt-et*2,h-lt-0.1]) 
+		translate ([wt+lt,wt+lt-et*2,h-lt-0.1])
 		round_cube(l=l*2,w=w-2*(wt+lt)+4*et,h=lt+0.2,r=r-wt+lt);
 
 		//subtract out a lid to make the ledge
@@ -102,16 +104,16 @@ module roundBoxRim(l=boxLength,
 }
 
 module roundBoxLid(l=40,w=30,h=3,wt=2,t=2,et=0.5,r=5,notch=true){
-	translate ([l, 0, 0]) 
-	rotate (a = [0, 0, 180]) 
+	translate ([l, 0, 0])
+	rotate (a = [0, 0, 180])
 
 	difference(){
 
 		round_cube(l=l,w=w,h=h,t=t,r=r);
 
-		translate ([-1, 0, et]) rotate (a = [45, 0, 0])  cube (size = [l+2, h*2, h*2]); 
-		translate ([-1, w, et]) rotate (a = [45, 0, 0])  cube (size = [l+2, h*2, h*2]); 
-		translate ([l, -1, et]) rotate (a = [45, 0, 90]) cube (size = [w+2, h*2, h*2]); 
+		translate ([-1, 0, et]) rotate (a = [45, 0, 0])  cube (size = [l+2, h*2, h*2]);
+		translate ([-1, w, et]) rotate (a = [45, 0, 0])  cube (size = [l+2, h*2, h*2]);
+		translate ([l, -1, et]) rotate (a = [45, 0, 90]) cube (size = [w+2, h*2, h*2]);
 		if (notch==true){
 			translate([2,w/2,h+0.001]) thumbNotch(10/2,72,t);
 		}
@@ -121,7 +123,7 @@ module roundBoxLid(l=40,w=30,h=3,wt=2,t=2,et=0.5,r=5,notch=true){
         translate([sensor_pos_lid_x,wallThickness+7,-lidThickness]) cube([10,1,lidThickness*3]);
 	}
 
-    
+
 
 }
 
@@ -146,7 +148,7 @@ module thumbNotch(
 }
 
 module round_cube(l=40,w=30,h=20,r=5,$fn=30){
-	hull(){ 
+	hull(){
 		translate ([r, r, 0]) cylinder (h = h, r=r);
 		translate ([r, w-r, 0]) cylinder (h = h, r=r);
 		translate ([l-r,w-r, 0]) cylinder (h = h, r=r);

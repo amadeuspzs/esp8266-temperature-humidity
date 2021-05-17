@@ -36,7 +36,7 @@ Tested with:
 Tested with:
 
 1. MCP1700 **current preferred regulator**
-2. TPS62203 _switching so fiddly to get right_
+2. TPS62203 _high frequency switching too fiddly to implement stably_
 
 End goal is to print the smallest PCB + battery package and 3D print a case for discrete deployment.
 

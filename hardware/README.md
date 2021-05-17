@@ -1,5 +1,7 @@
 # Hardware
 
+[![PCB in 3D](../docs/pcb.gif)](esp12f-si7021)
+
 ## Battery powered
 
 **Goal: run for 6 months+ using a battery.**
@@ -68,10 +70,12 @@ The **Si7021** outperforms in both precision, accuracy, speed and current!
 
 ### Schematics
 
+**Battery powered MCP1700 Si7021:**
+
+[![Battery powered Si7021](https://user-images.githubusercontent.com/534681/118544606-7c420b80-b74d-11eb-8b37-5f14768cc927.png)](esp12f-si7021)
+
+[![PCB](https://user-images.githubusercontent.com/534681/118544865-c3c89780-b74d-11eb-8af2-0fb2f5242cc0.png)](esp12f-si7021)
+
 **Mains powered DHT22:**
 
 ![Mains powered DHT22](nodemcu-mains.png)
-
-**Battery powered TPS62203/MCP1700 Si7021:**
-
-[![Battery powered Si7021](https://user-images.githubusercontent.com/534681/106813903-82fab600-6669-11eb-8dda-4ef510f002e0.png)](esp12f-si7021)
