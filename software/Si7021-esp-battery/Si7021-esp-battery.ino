@@ -7,7 +7,7 @@
  *
  */
 
-#define debug false // serial output at 74880 baud
+#define debug true // serial output at 74880 baud
 #define dhcp false // whether to obtain an IP address (slower) via dhcp
  
 #include <ESP8266WiFi.h>
