@@ -31,6 +31,6 @@
 
 ![Photo of 3D printed case1](https://user-images.githubusercontent.com/534681/118548034-b8776b00-b751-11eb-959d-c519ca402267.png)
 
-* Analysis shows latest case design (`case2`) only impacts temperature readings by `0.05`&degC;, less than the sensor repeatability:
+* Analysis shows latest case design (`case2`) only impacts temperature readings by `0.05`&deg;C less than the sensor repeatability:
 
 ![Analysis of case impact](https://user-images.githubusercontent.com/534681/118548343-199f3e80-b752-11eb-8731-24e7569f7ab5.png)
