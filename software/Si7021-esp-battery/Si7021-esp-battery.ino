@@ -397,8 +397,10 @@ float readVbatt() {
       Serial.println("ADC voltage enabled for 3s");
       delay(3000);
     }
-    
+
+    // first adc reading is garbage, so take another
     int adc = analogRead(A0);
+    adc = analogRead(A0);
     if (debug) {
       Serial.print("ADC reading: ");
       Serial.println(adc);
