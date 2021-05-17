@@ -3,7 +3,7 @@
 * 9 months+ runtime on a 1200mAh Li-Ion battery
 * Highly accurate Si7021 temperature and humidity sensor
 * Physical case with low impact on temperature (<0.05&deg;C)
-* MQTT integration with e.g. Home Assistant
+* MQTT integration with e.g. Home Assistant directly over WiFi
 * PH2, PH3 and GH2 connectors for range of Li-Ion batteries
 * Programming header and jumper for quick flashing
 * Battery voltage measurement for power management
