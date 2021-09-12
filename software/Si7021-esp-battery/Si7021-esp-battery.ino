@@ -8,8 +8,8 @@
  */
 
 #define debug true // serial output at 74880 baud
-#define dhcp false // whether to obtain an IP address (slower) via dhcp
- 
+#define dhcp true // whether to obtain an IP address (slower) via dhcp
+
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <Adafruit_Si7021.h>
@@ -20,7 +20,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 Adafruit_Si7021 sensor = Adafruit_Si7021();
 
-// CRC function used to ensure data validity
+// CRC function used to ensuree data validity
 uint32_t calculateCRC32(const uint8_t *data, size_t length);
 
 // helper function to dump memory contents as hex
@@ -65,10 +65,6 @@ void setup() {
   WiFi.mode(WIFI_OFF);
   WiFi.forceSleepBegin();
   delay(1);
-
-  // power down the Si7021 sensor until we need it
-  pinMode(siPowerPin,OUTPUT);
-  digitalWrite(siPowerPin, HIGH); // inverted
 
   // power down the ADC
   pinMode(adcPowerPin, OUTPUT);
@@ -414,12 +410,9 @@ float readVbatt() {
       delay(3000);
     }
 
-    float vadc = mapfloat(adc,0,1023,0,vref);
-    float vbatt = ((R1 + R2)/R2) * vadc;
+    float vbatt = vbatt_calibration * float(adc);
 
     if (debug) {
-      Serial.print("Vadc: ");
-      Serial.println(vadc);
       Serial.print("Vbatt: ");
       Serial.println(vbatt);
     }
@@ -439,21 +432,7 @@ void readAllSensors() {
 // read Si7021 chip using Adafruit library
 void readSi7021() {
 
-  if (debug) {
-    Serial.println("Powering on the Si7021 sensor in 3s..."); 
-    delay(3000);
-  }
-  
-  // switch on the Si7021 sensor
-  digitalWrite(siPowerPin, LOW); // inverted
-
-  if (debug) {
-    Serial.println("Si7021 sensor is now powered on for 3s...");
-    delay(3000);
-  }
-
   // allow the Si7021 sensor time to wake up
-  delay(25); 
   if (!sensor.begin()) {
     if (debug) Serial.println("Did not find Si7021 sensor! Crashing now...");
     while (true)
@@ -492,12 +471,4 @@ void readSi7021() {
     Serial.println(humidity);
   }
 
-  // turn off Si7021 sensor
-  digitalWrite(siPowerPin, HIGH); // inverted
 } // end readSi7021
-
-// map two float ranges
-float mapfloat(float x, float in_min, float in_max, float out_min, float out_max)
-{
- return float ( (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
-} // end mapfloat
