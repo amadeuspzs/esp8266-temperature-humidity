@@ -8,16 +8,18 @@
 // Once you have a static IP, enter it below
 IPAddress ip(0,0,0,0);
 IPAddress gateway(0,0,0,0);
-IPAddress subnet(0,0,0,0);
+IPAddress subnet(255,255,255,0);
 
 // Sensor configuration
-#define siPowerPin 12 // GPIO12
 #define temperatureChangeThreshold 0.08 // repeatability from the data sheet
 #define humidityChangeThreshold 0.2 // repeatability from the data sheet
 #define adcPowerPin 13 // GPIO13 for ADC
-#define R1 330.0 // units don't matter as long as they
-#define R2 100.0 // are consistent e.g. Kohms
-#define vref 1.0 // internal vref (V)
+// Ideal ADC and voltage divider behaviour
+// is 4.2/1024.0
+// For accurate battery voltage measurements
+// use an accurate voltage input, measure ADC
+// and replace values below (assumes linear response)
+#define vbatt_calibration 4.2/1024.0
 
 // Reporting
 #define polling_m 10 // every X minutes
