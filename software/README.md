@@ -8,3 +8,5 @@ There are two versions:
 2. Battery-powered sketch, pushing every 10 minutes
 
 Both require an MQTT server.
+
+Additionally there is an [ADC calibration sketch](adc-calibration/) for more accurate battery health measurements.

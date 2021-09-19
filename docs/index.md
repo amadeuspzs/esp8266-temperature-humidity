@@ -7,7 +7,7 @@
 * Physical case with low impact on temperature (<0.05&deg;C)
 * MQTT integration with e.g. Home Assistant directly over WiFi
 * PH2, PH3 and GH2 connectors for range of Li-Ion batteries
-* Programming header and jumper for quick flashing
+* POGO programming header for quick flashing
 * Battery voltage measurement for power management
 * [Technical details available on Github](https://github.com/amadeuspzs/esp8266-temperature-humidity/)
 
@@ -23,7 +23,7 @@
 
 * [Arduino files](https://github.com/amadeuspzs/esp8266-temperature-humidity/tree/master/software/Si7021-esp-battery)
 * Update `config.h` with your settings
-* Fine-tune `vref` for accurate battery voltage measurements
+* Fine-tune `vbatt_calibration` for accurate battery voltage measurements
 
 ## Case
 

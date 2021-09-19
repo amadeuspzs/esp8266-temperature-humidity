@@ -2,11 +2,11 @@
 
 **Problem statement**:
 
-> Requirement of a low-power temperature and humidity sensor to control a domestic heating system via [Home Assistant](https://www.home-assistant.io/). The sensor needs to be mobile (battery-powered), last a long time on a single charge (6 months+) and connect directly to WiFi to avoid the need for e.g. Zigbee hubs.
+> As a home-owner/renter I need to control multiple heating systems with room-by-room thermostats that I can move around for optimum measurements.
 
 **Solution statement**:
 
-> Software (Arduino) and Hardware (ESP12F with Si7021 sensor) implementation of an MQTT temperature/humidity sensor with battery voltage monitoring.
+> Hardware (ESP12F with Si7021 sensor) and software (Arduino) implementation of a WiFi MQTT temperature/humidity sensor with battery voltage monitoring and 9+ months rechargeable battery life. Designed for integration with [Home Assistant](https://www.home-assistant.io/).
 
 See the [product website](https://amadeuspzs.github.io/esp8266-temperature-humidity/) for a summary.
 

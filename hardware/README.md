@@ -72,7 +72,7 @@ The **Si7021** outperforms in both precision, accuracy, speed and current!
 
 **Battery powered MCP1700 Si7021:**
 
-[![Battery powered Si7021](https://user-images.githubusercontent.com/534681/118544606-7c420b80-b74d-11eb-8b37-5f14768cc927.png)](esp12f-si7021)
+[![Battery powered Si7021 v1.3](https://user-images.githubusercontent.com/534681/133940632-eeb511be-c305-425e-bc6d-333646c1edda.png)](esp12f-si7021)
 
 [![PCB](https://user-images.githubusercontent.com/534681/118544865-c3c89780-b74d-11eb-8af2-0fb2f5242cc0.png)](esp12f-si7021)
 
